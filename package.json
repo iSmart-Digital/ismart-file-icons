@@ -1,6 +1,6 @@
 {
   "name": "@ismart/file-icons",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "SVG file type and product icons for Microsoft, Autodesk, Adobe and Office 365",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

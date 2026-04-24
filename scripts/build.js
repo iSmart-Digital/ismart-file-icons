@@ -40,16 +40,23 @@ function toIdentifier(vendor, name) {
 
 const resizeSvgBody = `\
 function resizeSvg(svg, size) {
-  if (size == null) return svg;
-  var w = size, h = size;
   var vb = svg.match(/viewBox="([^"]+)"/);
-  if (vb) {
-    var parts = vb[1].trim().split(/[\\s,]+/);
-    var vbW = parseFloat(parts[2]);
-    var vbH = parseFloat(parts[3]);
-    if (vbW && vbH && vbW !== vbH) {
-      h = Math.round(size * vbH / vbW * 100) / 100;
+  var vbParts = vb ? vb[1].trim().split(/[\\s,]+/) : null;
+  var w, h;
+  if (size != null) {
+    w = size; h = size;
+    if (vbParts) {
+      var vbW = parseFloat(vbParts[2]);
+      var vbH = parseFloat(vbParts[3]);
+      if (vbW && vbH && vbW !== vbH) {
+        h = Math.round(size * vbH / vbW * 100) / 100;
+      }
     }
+  } else if (vbParts && !/<svg[^>]+\\bwidth=/.test(svg)) {
+    w = parseFloat(vbParts[2]);
+    h = parseFloat(vbParts[3]);
+  } else {
+    return svg;
   }
   return svg.replace(/<svg([^>]*)>/, function(_, attrs) {
     var a = attrs.replace(/\\s+width="[^"]*"/, '').replace(/\\s+height="[^"]*"/, '');
@@ -76,12 +83,13 @@ function namespaceIds(svg, prefix) {
 }`;
 
 const getIconBody = `\
+var _vendorScales = { microsoft: 1.15, office: 1.15 };
 function getIcon(vendor, name, size, options) {
   var svg = _svgMap[vendor] && _svgMap[vendor][name];
   if (!svg) return null;
   var uniqueIds = !options || options.uniqueIds !== false;
   if (uniqueIds) svg = namespaceIds(svg, options && options.idPrefix);
-  var scale = options && options.scale;
+  var scale = (options && options.scale != null) ? options.scale : _vendorScales[vendor];
   if (scale != null && scale !== 1) {
     svg = svg.replace(/viewBox="([^"]+)"/, function(_, vb) {
       var p = vb.trim().split(/[\\s,]+/);
