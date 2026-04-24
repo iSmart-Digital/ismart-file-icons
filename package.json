@@ -1,0 +1,30 @@
+{
+  "name": "@ismart/file-icons",
+  "version": "1.0.0",
+  "description": "SVG file type and product icons for Microsoft, Autodesk, Adobe and Office 365",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "icons"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "prepublishOnly": "node scripts/build.js"
+  },
+  "keywords": ["icons", "svg", "file-icons", "microsoft", "autodesk", "adobe", "office365", "fluent"],
+  "author": "Anthony Decap <anthony@ismart.be>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><svg id="Frame.io_64" data-name="Frame.io 64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="62" viewBox="0 0 64 62">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_303301" data-name="Rectangle 303301" width="64" height="62"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_366988" data-name="Path 366988" d="M38.7,32.192h0a2.257,2.257,0,0,1,1.709.993,43.518,43.518,0,0,1,5.1,20.126h0a42.357,42.357,0,0,1-5.1,20.126,1.974,1.974,0,0,1-1.709.993h0a1.011,1.011,0,0,1-.855-.291,1.988,1.988,0,0,1-.855-2.543h0a38.286,38.286,0,0,0,0-36.716,2.014,2.014,0,0,1,.708-2.543h0c.44-.024.708-.17,1-.145Zm9.938,4.65a1.844,1.844,0,0,1,2.393.92.084.084,0,0,0,.024.048,38.721,38.721,0,0,1,3.126,15.476h0a38.8,38.8,0,0,1-3.126,15.476,1.816,1.816,0,0,1-2.344,1.017h0a.085.085,0,0,1-.049-.024A1.736,1.736,0,0,1,47.61,67.5h0a.342.342,0,0,0,.049-.145h0a37.132,37.132,0,0,0,2.833-14.071h0a37.132,37.132,0,0,0-2.833-14.071,1.7,1.7,0,0,1,.757-2.3h0a.4.4,0,0,1,.22-.073ZM59.11,41.9a1.92,1.92,0,0,1,2.271,1.4,39.445,39.445,0,0,1,1.148,10h0a45.653,45.653,0,0,1-1.148,9.978,1.9,1.9,0,0,1-3.712-.823v-.024h0a39.837,39.837,0,0,0,1.148-9.155,38.7,38.7,0,0,0-1.148-9.155,1.88,1.88,0,0,1,1.392-2.252l.049.024Zm8.937,5.328a1.806,1.806,0,0,1,2.124,1.4h0a23.285,23.285,0,0,1,.293,4.5h0c0,1.55-.147,2.955-.293,4.5a1.9,1.9,0,0,1-2.124,1.55h0a1.889,1.889,0,0,1-1.563-2.107,35.344,35.344,0,0,0,.293-3.948h0a38.583,38.583,0,0,0-.293-3.948,2,2,0,0,1,1.563-1.962ZM74.3,53.286a2.124,2.124,0,1,1,2.124,2.107A2.166,2.166,0,0,1,74.3,53.286Z" transform="translate(-36.79 -32.189)"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="-6.321" y1="-0.205" x2="-6.321" y2="-0.205" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5b53ff"/>
+      <stop offset="1" stop-color="#8a83ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_313119" data-name="Group 313119">
+    <g id="Group_313118" data-name="Group 313118" clip-path="url(#clip-path)">
+      <g id="Frame.io_redo2" transform="translate(0)">
+        <g id="Frame.io-2" transform="translate(0)">
+          <rect id="Rectangle_221090" width="44.661" height="44.296" transform="translate(9.743 8.864)" fill="#fff"/>
+          <g id="Rectangle_221089">
+            <path id="Rectangle_221091" d="M8.937,0h46.15a8.9,8.9,0,0,1,8.937,8.864v44.3a8.9,8.9,0,0,1-8.937,8.864H8.937A8.941,8.941,0,0,1,0,53.136V8.864A8.9,8.9,0,0,1,8.937,0Z"/>
+          </g>
+          <g id="Group_302966" transform="translate(12.633 11.041)">
+            <g id="Group_313117" data-name="Group 313117" transform="translate(0 0)">
+              <g id="Group_313116" data-name="Group 313116" clip-path="url(#clip-path-2)">
+                <g id="Group_302968" transform="translate(-7.164 -5.202)">
+                  <g id="Mask_Group_189305" transform="translate(0 0)">
+                    <rect id="Rectangle_221088" width="51.864" height="51.441" transform="translate(0 0)" fill="url(#linear-gradient)"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
