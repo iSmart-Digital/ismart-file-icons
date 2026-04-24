@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "prepare": "node scripts/build.js",
     "prepublishOnly": "node scripts/build.js"
   },
   "keywords": ["icons", "svg", "file-icons", "microsoft", "autodesk", "adobe", "office365", "fluent"],
