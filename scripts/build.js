@@ -41,9 +41,19 @@ function toIdentifier(vendor, name) {
 const resizeSvgBody = `\
 function resizeSvg(svg, size) {
   if (size == null) return svg;
+  var w = size, h = size;
+  var vb = svg.match(/viewBox="([^"]+)"/);
+  if (vb) {
+    var parts = vb[1].trim().split(/[\\s,]+/);
+    var vbW = parseFloat(parts[2]);
+    var vbH = parseFloat(parts[3]);
+    if (vbW && vbH && vbW !== vbH) {
+      h = Math.round(size * vbH / vbW * 100) / 100;
+    }
+  }
   return svg.replace(/<svg([^>]*)>/, function(_, attrs) {
     var a = attrs.replace(/\\s+width="[^"]*"/, '').replace(/\\s+height="[^"]*"/, '');
-    return '<svg' + a + ' width="' + size + '" height="' + size + '">';
+    return '<svg' + a + ' width="' + w + '" height="' + h + '">';
   });
 }`;
 
