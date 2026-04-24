@@ -190,9 +190,15 @@ function resolveIcon(filename: string): string | null {
 
 `access` `clipchamp` `copilot` `excel` `forms` `lists` `loop` `onedrive` `onenote` `outlook` `powerbi` `powerpoint` `project` `publisher` `sharepoint` `stream` `sway` `teams` `todo` `visio` `whiteboard` `word` `yammer`
 
-### `autodesk` — Autodesk file type icons (24)
+### `autodesk` — Autodesk file type icons (24) + brand logo
 
 `3ds` `3dx` `archive` `catproduct` `dwf` `dwfx` `dwg` `f3d` `genericfile` `idw` `ifc` `max` `nwc` `nwd` `obj` `pdf` `photo` `rvt` `txt` `usd` `usda` `usdc` `usdz` `video`
+
+Brand: `logo` — the Autodesk wordmark (non-square; `resizeSvg` will scale it proportionally).
+
+```js
+getIcon('autodesk', 'logo', 32)   // renders at 32px tall, proportional width
+```
 
 ### `adobe` — Adobe Creative Cloud product icons (33)
 
