@@ -81,6 +81,22 @@ function getIcon(vendor, name, size, options) {
   if (!svg) return null;
   var uniqueIds = !options || options.uniqueIds !== false;
   if (uniqueIds) svg = namespaceIds(svg, options && options.idPrefix);
+  var scale = options && options.scale;
+  if (scale != null && scale !== 1) {
+    svg = svg.replace(/viewBox="([^"]+)"/, function(_, vb) {
+      var p = vb.trim().split(/[\\s,]+/);
+      var x = parseFloat(p[0]), y = parseFloat(p[1]);
+      var w = parseFloat(p[2]), h = parseFloat(p[3]);
+      var nw = Math.round(w / scale * 100) / 100;
+      var nh = Math.round(h / scale * 100) / 100;
+      var nx = Math.round((x + (w - nw) / 2) * 100) / 100;
+      var ny = Math.round((y + (h - nh) / 2) * 100) / 100;
+      return 'viewBox="' + nx + ' ' + ny + ' ' + nw + ' ' + nh + '"';
+    });
+    if (svg.indexOf('overflow=') === -1) {
+      svg = svg.replace('<svg', '<svg overflow="visible"');
+    }
+  }
   return resizeSvg(svg, size);
 }`;
 
@@ -152,7 +168,7 @@ for (const { vendor, name } of allEntries) {
 }
 
 dts.push('');
-dts.push('export interface GetIconOptions { uniqueIds?: boolean; idPrefix?: string; }');
+dts.push('export interface GetIconOptions { uniqueIds?: boolean; idPrefix?: string; scale?: number; }');
 dts.push('export declare function namespaceIds(svg: string, prefix?: string): string;');
 dts.push('export declare function resizeSvg(svg: string, size: number): string;');
 dts.push('export declare function getIcon(vendor: string, name: string, size?: number, options?: GetIconOptions): string | null;');
