@@ -47,10 +47,30 @@ function resizeSvg(svg, size) {
   });
 }`;
 
+const namespaceIdsFnBody = `\
+var _idSeq = 0;
+function namespaceIds(svg, prefix) {
+  if (prefix == null) prefix = 'i' + (++_idSeq) + '_';
+  var ids = [];
+  svg.replace(/\\bid="([^"]+)"/g, function(_, id) { ids.push(id); });
+  if (!ids.length) return svg;
+  for (var i = 0; i < ids.length; i++) {
+    var id = ids[i], nid = prefix + id;
+    svg = svg
+      .split('id="' + id + '"').join('id="' + nid + '"')
+      .split('url(#' + id + ')').join('url(#' + nid + ')')
+      .split('href="#' + id + '"').join('href="#' + nid + '"')
+      .split('xlink:href="#' + id + '"').join('xlink:href="#' + nid + '"');
+  }
+  return svg;
+}`;
+
 const getIconBody = `\
-function getIcon(vendor, name, size) {
+function getIcon(vendor, name, size, options) {
   var svg = _svgMap[vendor] && _svgMap[vendor][name];
   if (!svg) return null;
+  var uniqueIds = !options || options.uniqueIds !== false;
+  if (uniqueIds) svg = namespaceIds(svg, options && options.idPrefix);
   return resizeSvg(svg, size);
 }`;
 
@@ -71,6 +91,9 @@ for (const [vendor, icons] of Object.entries(data)) {
   cjs.push('};');
 }
 
+cjs.push('');
+cjs.push(namespaceIdsFnBody);
+cjs.push('exports.namespaceIds = namespaceIds;');
 cjs.push('');
 cjs.push(resizeSvgBody);
 cjs.push('exports.resizeSvg = resizeSvg;');
@@ -103,6 +126,8 @@ for (const [vendor, icons] of Object.entries(data)) {
 }
 
 esm.push('');
+esm.push('export ' + namespaceIdsFnBody);
+esm.push('');
 esm.push('export ' + resizeSvgBody);
 esm.push('');
 esm.push('export ' + getIconBody);
@@ -117,8 +142,10 @@ for (const { vendor, name } of allEntries) {
 }
 
 dts.push('');
+dts.push('export interface GetIconOptions { uniqueIds?: boolean; idPrefix?: string; }');
+dts.push('export declare function namespaceIds(svg: string, prefix?: string): string;');
 dts.push('export declare function resizeSvg(svg: string, size: number): string;');
-dts.push('export declare function getIcon(vendor: string, name: string, size?: number): string | null;');
+dts.push('export declare function getIcon(vendor: string, name: string, size?: number, options?: GetIconOptions): string | null;');
 dts.push('export declare const icons: Record<string, string[]>;');
 
 // ── Write ─────────────────────────────────────────────────────────────────────
